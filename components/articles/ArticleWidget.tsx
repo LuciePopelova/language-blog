@@ -3,18 +3,17 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { getRecentArticles, getSimilarArticles } from '../../services/index'
 import { IArticle } from '../../types/article'
-import { ICategory } from '../../types/category'
 
 type Props = {
-  categories: Array<string>
-  slug: string
+  categories?: Array<string>
+  slug?: string
 }
 
 const ArticleWidget: React.FC<Props> = ({ categories, slug }) => {
   const [articles, setArticle] = useState<Array<IArticle>>([])
 
   useEffect(() => {
-    if (slug) {
+    if (slug && categories) {
       getSimilarArticles(categories, slug).then((result) => setArticle(result))
     } else {
       getRecentArticles().then((result) => setArticle(result))
@@ -27,9 +26,9 @@ const ArticleWidget: React.FC<Props> = ({ categories, slug }) => {
         {slug ? 'Related Articles' : 'Recent Articles'}
       </h3>
       {articles instanceof Array &&
-        articles.map((article: Record<string, any>) => {
+        articles.map((article: IArticle) => {
           return (
-            <div key={article.title} className="flex items-center w-full mb-4">
+            <div key={article.slug} className="flex items-center w-full mb-4">
               <div className="flex-none w-16">
                 <img
                   alt={article.title}

@@ -19,13 +19,18 @@ const CategoryArticles: React.FC<Props> = ({ articles }) => {
     return <Loader />
   }
 
+  console.log(articles)
+
   return (
     <div className="container px-10 mx-auto mb-8 lg:px-20">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
         <div className="col-span-1 lg:col-span-8">
           {articles.length > 0 ? (
             articles.map((article) => (
-              <ArticleCard article={article.node} key={getUID()} />
+              <ArticleCard
+                article={article.node}
+                key={article.node?.slug ?? getUID()}
+              />
             ))
           ) : (
             <div className="p-0 pb-12 mb-8 bg-white rounded-lg shadow-lg lg:p-9">

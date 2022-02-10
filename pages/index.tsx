@@ -27,7 +27,7 @@ export default function Home({ articles }: HomeProps) {
 
         <div className="col-span-1 lg:col-span-4">
           <div className="relative top-8 lg:sticky">
-            <ArticleWidget slug="" categories={[]} />
+            <ArticleWidget />
             <Categories />
           </div>
         </div>
@@ -38,6 +38,7 @@ export default function Home({ articles }: HomeProps) {
 
 export async function getStaticProps() {
   const articles = (await getArticles()) || []
+
   return {
     props: { articles },
   }
