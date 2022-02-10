@@ -1,8 +1,7 @@
-import { performance } from 'perf_hooks'
 import React from 'react'
 
 export const getUID = () => {
-  return (performance.now().toString(36) + Math.random().toString(36)).replace(
+  return (Date.now().toString(36) + Math.random().toString(36)).replace(
     /\./g,
     ''
   )
