@@ -1,5 +1,5 @@
 import { IAuthor } from './author'
-import { ICategories, ICategory } from './category'
+import { ICategory } from './category'
 
 export interface IArticle {
   abstract: string
